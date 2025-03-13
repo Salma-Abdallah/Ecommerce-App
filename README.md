@@ -4,13 +4,13 @@ This repository contains two projects:
 1. **eCommerce API** - Backend application built with Spring Boot.
 2. **eCommerce Frontend** - Frontend application developed using Angular.
 
-## eCommerce API
+## Ecommerce API
 The eCommerce API provides the backend services for user management, product management, and shopping cart functionalities. It includes full CRUD (Create, Read, Update, Delete) operations for users, products, and carts.
 
 ### Technologies Used
 - **Spring Boot** - Backend framework
 - **Spring Data** - Database interaction
-- **Spring Security** - Authentication and authorization
+- **Spring Security** - Authentication 
 - **MapStruct** - Object mapping
 - **Swagger Documentation** - API documentation
 
@@ -18,14 +18,13 @@ The eCommerce API provides the backend services for user management, product man
 You can access the API documentation via Swagger at:
 [Swagger API Documentation](https://app.swaggerhub.com/apis/salmaabdallah-722/ecommerceApi/2.0)
 
-## eCommerce Frontend
+## Ecommerce Frontend
 The eCommerce Frontend is built using Angular and serves as the UI for users to interact with the eCommerce platform.
 
 ### Features
 - User authentication and management
-- Product listing and search
+- Product listing 
 - Shopping cart functionality
-- Secure checkout process
 
 ## Getting Started
 ### Clone the Repository
