@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-03-13T09:53:33+0200",
-    comments = "version: 1.5.3.Final, compiler: Eclipse JDT (IDE) 3.41.0.z20250213-2037, environment: Java 21.0.6 (Eclipse Adoptium)"
+    date = "2025-03-13T23:40:03+0200",
+    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.5 (Oracle Corporation)"
 )
 @Component
 public class CartMapperImpl implements CartMapper {
@@ -32,8 +32,8 @@ public class CartMapperImpl implements CartMapper {
         cart.user( userMapper.toEntity( cartDto.getUserDto() ) );
         cart.product( productMapper.toEntity( cartDto.getProductDto() ) );
         cart.cartId( cartIdDtoToCartId( cartDto.getCartId() ) );
-        cart.isDeleted( cartDto.getIsDeleted() );
         cart.quantity( cartDto.getQuantity() );
+        cart.isDeleted( cartDto.getIsDeleted() );
 
         return cart.build();
     }
@@ -49,8 +49,8 @@ public class CartMapperImpl implements CartMapper {
         cartDto.userDto( userMapper.toDto( cart.getUser() ) );
         cartDto.productDto( productMapper.toDto( cart.getProduct() ) );
         cartDto.cartId( cartIdToCartIdDto( cart.getCartId() ) );
-        cartDto.isDeleted( cart.getIsDeleted() );
         cartDto.quantity( cart.getQuantity() );
+        cartDto.isDeleted( cart.getIsDeleted() );
 
         return cartDto.build();
     }
@@ -79,8 +79,8 @@ public class CartMapperImpl implements CartMapper {
 
         CartIdDto.CartIdDtoBuilder cartIdDto = CartIdDto.builder();
 
-        cartIdDto.productId( cartId.getProductId() );
         cartIdDto.userId( cartId.getUserId() );
+        cartIdDto.productId( cartId.getProductId() );
 
         return cartIdDto.build();
     }

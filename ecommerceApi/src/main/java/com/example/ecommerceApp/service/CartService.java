@@ -36,9 +36,6 @@ public class CartService {
                 .collect(Collectors.toList());
     }
 
-//    public List<Cart> getByUserId(Integer id){
-//        return  cartRepository.findByUserId(id);
-//    }
     public List<CartDto> getByUserId(Integer id){
         List<Cart> carts =  cartRepository.findByUserId(id);
         return carts.stream()

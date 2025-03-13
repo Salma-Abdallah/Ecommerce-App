@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -22,35 +24,90 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    // public List<User> getAllUsers(){
-    // return userService.getAllUsers();
-    // }
-    public List<UserDto> getAllUsers() {
-        return userService.getAllUsers();
+    public ResponseEntity<?> getAllUsers() {
+        // return userService.getAllUsers();
+        List<UserDto> userDtos = userService.getAllUsers();
+
+        if(userDtos.isEmpty()){
+            Map<String, Object> errorResponse = new HashMap<>();
+            errorResponse.put("Success", false);
+            errorResponse.put("Message", "No Users found");
+    
+            return ResponseEntity.status(404).body(errorResponse);
+        }
+        else {
+            Map<String, Object> response = new HashMap<>();
+            response.put("Success", true);
+            response.put("Data", userDtos); 
+            response.put("Message", "get all users successful");
+
+            return ResponseEntity.ok(response);
+        }
     }
 
     @GetMapping("/{id}")
-    public UserDto getUserById(@PathVariable Integer id) {
-        return userService.getById(id);
+    public ResponseEntity<?> getUserById(@PathVariable Integer id) {
+        UserDto user = userService.getById(id);
+        if(user.equals(null)){
+            Map<String, Object> errorResponse = new HashMap<>();
+            errorResponse.put("Success", false);
+            errorResponse.put("Message", "Can't get user with id "+id);
+    
+            return ResponseEntity.status(404).body(errorResponse);
+        }
+        else{
+            Map<String, Object> response = new HashMap<>();
+            response.put("Success", true);
+            response.put("Data", user); 
+            response.put("Message", "get user"+ id +"successful");
+
+            return ResponseEntity.ok(response);
+        }
     }
 
     @PostMapping
-    public UserDto addUser(@RequestBody UserDto userDto) {
-        return userService.addUser(userDto);
+    public ResponseEntity<?> addUser(@RequestBody UserDto userDto) {
+        UserDto user = userService.addUser(userDto);
+
+        if(user.equals(null)){
+            Map<String, Object> errorResponse = new HashMap<>();
+            errorResponse.put("Success", false);
+            errorResponse.put("Message", "Can't add user");
+    
+            return ResponseEntity.status(404).body(errorResponse);
+        }
+        else{
+            Map<String, Object> response = new HashMap<>();
+            response.put("Success", true);
+            response.put("Data", user); 
+            response.put("Message", "add new user successful");
+
+            return ResponseEntity.ok(response);
+        }
     }
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+        System.out.println("Received Email: " + loginRequest.getEmail()); // Debugging
+        System.out.println("Received Password: " + loginRequest.getPassword());
+
         Optional<UserDto> userDto = userService.authenticateUser(loginRequest.getEmail(), loginRequest.getPassword());
 
-        // return ResponseEntity.status(200).body("You are Authorithed 👍");
-        // return userDto.map(ResponseEntity::ok)
-        // .orElseGet(()-> ResponseEntity.status(401).body("Invalid email or
-        // password"));
         if (userDto.isPresent()) {
-            return ResponseEntity.ok(userDto.get()); // Return the user data if authenticated
+            System.out.println(userDto.get());
+            Map<String, Object> response = new HashMap<>();
+            response.put("Success", true);
+            response.put("Data", userDto.get()); 
+            response.put("Message", "Login successful");
+
+            return ResponseEntity.ok(response);
         } else {
-            return ResponseEntity.status(401).body("Invalid email or password 🚫"); // Return error message if authentication fails
+            Map<String, Object> errorResponse = new HashMap<>();
+            errorResponse.put("Success", false);
+            errorResponse.put("Message", "Invalid email or password 🚫");
+    
+            return ResponseEntity.status(401).body(errorResponse);
         }
     }
+
 }
