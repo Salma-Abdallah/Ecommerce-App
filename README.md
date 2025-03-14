@@ -29,7 +29,7 @@ The eCommerce Frontend is built using Angular and serves as the UI for users to 
 ## Getting Started
 ### Clone the Repository
 ```bash
-git clone https://github.com/your-repo/ecommerce-app.git
+https://github.com/Salma-Abdallah/Ecommerce-App.git
 ```
 
 ### Running the Backend (eCommerce API)
