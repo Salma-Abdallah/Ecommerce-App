@@ -1,8 +1,8 @@
 # Ecommerce-App Repository
 
 This repository contains two projects:
-1. **eCommerce API** - Backend application built with Spring Boot.
-2. **eCommerce Frontend** - Frontend application developed using Angular.
+1. **Ecommerce API** - Backend application built with Spring Boot.
+2. **Ecommerce Frontend** - Frontend application developed using Angular.
 
 ## Ecommerce API
 The eCommerce API provides the backend services for user management, product management, and shopping cart functionalities. It includes full CRUD (Create, Read, Update, Delete) operations for users, products, and carts.
