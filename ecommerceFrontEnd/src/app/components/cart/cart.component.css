@@ -1,0 +1,45 @@
+/* .card {
+    border-radius: 10px;
+    padding: 15px;
+  }
+  
+  .table th, .table td {
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  .form-check-label {
+    font-weight: bold;
+  }
+  
+  button {
+    width: 150px;
+  }
+   */
+
+   .card {
+    border-radius: 10px;
+    padding: 15px;
+    max-width: 500px; /* Makes the cart card smaller */
+    margin: auto; /* Centers the card */
+  }
+  
+  .table th, .table td {
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  .form-check-label {
+    font-weight: bold;
+  }
+  
+  .buttons-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  button {
+    width: 48%; /* Makes both buttons take equal space side by side */
+  }
+  

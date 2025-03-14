@@ -1,0 +1,33 @@
+<div class="centered-container">
+    <div class="card shadow-lg mt-4 mx-3">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Product List</h5>
+        </div>
+        <div class="card-body p-0">
+            <ul class="list-group">
+                <li *ngFor="let product of products"
+                    class="list-group-item d-flex justify-content-between align-items-center"
+                    (click)="viewDetails(product)" style="cursor: pointer;">
+
+                    <!-- Product name & quantity -->
+                    <div>
+                        <strong routerLink="/products/details/{{product.Id}}">{{ product.Name }}</strong>
+                        <span class="text-muted">({{ product.Quantity }} in stock)</span>
+                    </div>
+
+                    <div class="d-flex align-items-center">
+                        <!-- Badge -->
+                        <span class="badge bg-primary rounded-pill me-2">{{ product.Price }} LE</span>
+
+                        <!-- Add to Cart Button -->
+                        <button class="btn btn-sm btn-success" (click)="addToCart(product); $event.stopImmediatePropagation();">
+                            Add to Cart
+                        </button>
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+

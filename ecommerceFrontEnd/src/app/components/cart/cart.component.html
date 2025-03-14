@@ -1,0 +1,52 @@
+<div class="container mt-4">
+    <div class="card shadow-lg">
+      <div class="card-header bg-primary text-white">
+        <h4>Shopping Cart</h4>
+      </div>
+  
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of cart">
+              <td>{{ item.name }}</td>
+              <td>${{ item.price }}</td>
+              <td>
+                <input type="number" [(ngModel)]="item.quantity" min="1" class="form-control" (change)="updateQuantity()">
+              </td>
+              <td>${{ item.price * item.quantity }}</td>
+            </tr>
+          </tbody>
+        </table>
+  
+        
+        <hr>
+  
+        <!-- Total Price -->
+        <h5>Total: ${{ totalPrice }}</h5>
+  
+        <!-- Cash on Delivery Checkbox -->
+        <div class="form-check">
+          <input type="checkbox" id="cod" class="form-check-input" [(ngModel)]="cashOnDelivery">
+          <label for="cod" class="form-check-label">Pay Cash on Delivery</label>
+        </div>
+  
+        <!-- Checkout Button -->
+        <button class="btn btn-success mt-3" (click)="placeOrder()" [disabled]="!cashOnDelivery">
+          Checkout
+        </button>
+
+        <!-- Update Button -->
+        <button class="btn btn-warning mt-3 ms-3" (click)="applyUpdate()" [disabled]="!isUpdated">Update</button>
+  
+      </div>
+    </div>
+  </div>
+  

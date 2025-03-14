@@ -1,0 +1,26 @@
+<div style="margin: 20px; width: 80%; align-items: center;">
+<table class="table table-striped table-hover">
+    <tr  >
+        <td>#</td>
+        <td> Name </td>
+        <td> Age </td>
+        <td>Delete</td>
+    </tr>
+    <tr *ngFor="let student of students; let i = index">
+        <td>{{ student.ID }}</td>
+        <td >
+            <a routerLink="/students/details/{{student.ID}}">
+                {{student.Name}}
+            </a>
+            
+        </td>
+        <td>
+            <input type="number" [(ngModel)]="student.Age">
+        </td>
+         <td>
+              <button class="btn btn-primary" routerLink="/students"  (click)="delete(i)"> Delete </button>
+        </td>
+    </tr>
+    
+ </table>
+</div>

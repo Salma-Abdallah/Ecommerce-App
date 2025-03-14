@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow" style="background-color: #e3f2fd;">
+<!-- <nav class="navbar navbar-light" style="background-color: #e3f2fd;">  -->
+  <div class="container-fluid">
+
+    <a class="navbar-brand ms-3" href="#"> Hello {{user.name}}</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <!-- <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/">Hello ({{user.name}})</a>
+          </li> -->
+        <li class="nav-item">
+          <a class="nav-link " aria-current="page" routerLink="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/products" *ngIf="isLoggedIn">products</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" routerLink="/tasks" *ngIf="isLoggedIn">tasks</a>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/cartDetails"> CartDetails 🛒</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/cart"> Cart 🛒</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/signup">Sign up</a>
+        </li>
+
+      </ul>
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link me-3" (click)="logout()" routerLink="/login">Logout👋</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    let currentPage = window.location.pathname.split("/").pop(); // Get current page filename
+    let navLinks = document.querySelectorAll(".nav-link");
+
+    navLinks.forEach(link => {
+      if (link.getAttribute("href") === currentPage) {
+        link.classList.add("active"); // Add 'active' class to the current page link
+      }
+    });
+  });
+</script>

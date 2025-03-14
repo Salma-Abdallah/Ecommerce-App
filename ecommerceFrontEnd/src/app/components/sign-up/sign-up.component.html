@@ -1,0 +1,54 @@
+<h2 class="title">Sign up Form</h2>
+
+<div class="shadow-lg p-3 mb-5 bg-body rounded card">
+<div class="container">
+    <div [formGroup]="signupForm">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Name</label>
+        <input #inputName
+            [class.is-valid]="!signupForm.controls['Name'].errors" 
+            formControlName="Name" 
+            type="text" 
+            class="form-control"  
+            placeholder="Name">
+        <div *ngIf="signupForm.controls['Name'].errors && (signupForm.controls['Name'].touched || signupForm.controls['Name'].dirty)">
+          <small *ngIf="signupForm.controls['Name'].errors?.['required']"  class="form-text text-danger">required name</small>
+        </div>
+
+        
+      </div>
+  
+        <div class="form-group div">
+          <label for="exampleInputEmail1">Email address</label>
+          <input #inputEmail
+            [class.is-valid]="!signupForm.controls['Email'].errors" 
+            formControlName="Email" 
+            type="email"   
+            class="form-control" 
+            placeholder="Enter email">
+          <div *ngIf="signupForm.controls['Email'].errors && (signupForm.controls['Email'].touched || signupForm.controls['Email'].dirty)">
+            <small *ngIf="signupForm.controls['Email'].errors?.['required']"  class="form-text text-danger">required email</small>
+            <small *ngIf="signupForm.controls['Email'].errors?.['email']"  class="form-text text-danger">you must enter email</small>
+          </div>
+        </div>
+
+        <div class="form-group div" >
+          <label for="exampleInputPassword1">Password</label>
+          <input #inputPassword
+            [class.is-valid]="!signupForm.controls['Password'].errors" 
+            formControlName="Password"  
+            type="text" 
+            class="form-control" 
+            placeholder="Password">
+          <div *ngIf="signupForm.controls['Password'].errors && (signupForm.controls['Password'].touched || signupForm.controls['Password'].dirty)">
+            <small *ngIf="signupForm.controls['Password'].errors?.['required']"  class="form-text text-danger">required Password</small>
+            <small *ngIf="signupForm.controls['Password'].errors?.['minLength']"  class="form-text text-danger">must be bigger than 3</small>
+          </div>
+        </div>
+        
+        <button [disabled]="signupForm.invalid" (click)="add(inputName.value,inputEmail.value , inputPassword .value)" type="button" class="btn btn-primary button" >Submit</button>
+    </div>
+</div>
+</div>
+
+

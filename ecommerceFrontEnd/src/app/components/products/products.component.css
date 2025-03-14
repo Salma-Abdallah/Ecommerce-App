@@ -1,0 +1,32 @@
+.card {
+    border-radius: 10px; /* Rounded corners */
+    overflow: hidden; /* Prevent content from spilling over */
+    max-width: 10000px; /* Makes the cart card smaller */
+    margin: auto; /* Centers the card */
+    
+    padding: 15px;
+  }
+  
+  .list-group-item:hover {
+    background-color: #f8f9fa; /* Light gray hover effect */
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .card-header {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  .table th, .table td {
+    text-align: center;
+    vertical-align: middle;
+  }
+  .centered-container {
+    min-width: 100vw; /* Ensures it never becomes smaller than the browser width */
+    min-height: 100vh;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    
+  padding: 20px; /* Adds spacing around the content */
+    /* height: 100vh; Full height of the viewport */
+  }

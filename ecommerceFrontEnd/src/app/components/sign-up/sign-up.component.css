@@ -1,0 +1,24 @@
+.card{
+    margin-left: 50px;
+    box-shadow: 10px;
+    padding: 10px; 
+    
+}
+
+.button{
+    margin-top: 30px;
+    width: 100%;
+    
+}
+
+.div{
+
+    margin-top: 10px;
+}
+
+.title{
+    color: rosybrown;
+    margin-left: 45px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
