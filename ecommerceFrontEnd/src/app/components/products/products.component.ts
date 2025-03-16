@@ -6,16 +6,27 @@ import { ProductModel } from 'src/app/models/product.model';
 import { UserModel } from 'src/app/models/user.model';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css']
+  styleUrls: ['./products.component.css'],
+  animations: [
+    trigger('popupAnimation', [
+      state('hidden', style({ opacity: 0, transform: 'scale(0.8)' })),
+      state('visible', style({ opacity: 1, transform: 'scale(1)' })),
+      transition('hidden => visible', animate('300ms ease-out')),
+      transition('visible => hidden', animate('300ms ease-in'))
+    ])
+  ]
 })
 export class ProductsComponent {
   products:ProductModel[]=[];
   cart:CartRequestModel;
   user:UserModel;
+
+  showPopup  = false;
 
   constructor(private _httpClient: HttpClient,
       private _productService:ProductService,
@@ -61,7 +72,11 @@ export class ProductsComponent {
             .subscribe(
               (response: any) => {
                 if (response && response.Success) {
-                  alert(`${product.Name} added to cart!`);
+                  // alert(`${product.Name} added to cart!`);
+                  this.showPopup  = true;
+                  setTimeout(() => {
+                    this.showPopup  = false;
+                  }, 2000);
                 } else {
                   alert(response.Message || "Something went wrong!");
                 }

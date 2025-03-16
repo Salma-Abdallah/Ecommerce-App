@@ -16,12 +16,12 @@
           </thead>
           <tbody>
             <tr *ngFor="let item of cart">
-              <td>{{ item.Product.Name}}</td>
-              <td>${{ item.Product.Price}}</td>
+              <td>{{ item.product.Name}}</td>
+              <td>${{ item.product.Price}}</td>
               <td>
-                <input type="number" [(ngModel)]="item.Quantity" min="1" class="form-control" (change)="updateQuantity()">
+                <input type="number" [(ngModel)]="item.quantity" min="1" class="form-control" (change)="updateQuantity()">
               </td>
-              <td>${{ item.Product.Price }}</td>
+              <td>${{ item.product.Price }}</td>
             </tr>
           </tbody>
         </table>

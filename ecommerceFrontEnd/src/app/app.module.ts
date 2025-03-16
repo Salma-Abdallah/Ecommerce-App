@@ -20,7 +20,8 @@ import { OrderComponent } from './components/order/order.component';
 import { CartComponent } from './components/cart/cart.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
-import { CartDetailsComponent } from './components/cart-details/cart-details.component'
+import { CartDetailsComponent } from './components/cart-details/cart-details.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { CartDetailsComponent } from './components/cart-details/cart-details.com
   ],
   imports: [
     HttpClientModule,
+    BrowserAnimationsModule,
 
     BrowserModule,
     AppRoutingModule,

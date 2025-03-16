@@ -20,9 +20,22 @@
                         <span class="badge bg-primary rounded-pill me-2">{{ product.Price }} LE</span>
 
                         <!-- Add to Cart Button -->
-                        <button class="btn btn-sm btn-success" (click)="addToCart(product); $event.stopImmediatePropagation();">
+                        <button class="btn btn-sm btn-success"
+                            (click)="addToCart(product); $event.stopImmediatePropagation();">
                             Add to Cart
                         </button>
+                        <!-- Popup Animation Card -->
+                        <!-- <div *ngIf="showPopup" [@popupAnimation]="showPopup ? 'visible' : 'hidden'" class="popup-card">
+                            <h5>✅ Added to Cart</h5>
+                        </div> -->
+                        <!-- Popup Animation Card -->
+                        <div *ngIf="showPopup" [@popupAnimation]="showPopup ? 'visible' : 'hidden'" class="popup-card">
+                            <div class="popup-content">
+                                <div class="icon">🛒</div>
+                                <h4>Item Added to Cart!</h4>
+                                <p>Your selected product has been successfully added to the cart.</p>
+                            </div>
+                        </div>
                     </div>
 
                 </li>
@@ -30,4 +43,3 @@
         </div>
     </div>
 </div>
-

@@ -30,31 +30,16 @@ export class CartDetailsComponent implements OnInit {
         this.user = JSON.parse(userData);
         if (this.user && this.user.id) {
           const id = this.user.id;
-          //   this._http.get<APIResponse>(`http://localhost:7070/carts/${id}`)
-          //     .subscribe((response: APIResponse) => {
-          //       if (response && response.Success) {
-          //         this.cart = response.Data;
-
-          //         console.log("Products ---->"+this.cart[1].product.Id)
-          //         console.log("Response Date ---> "+response.Message);
-          //         console.log("Cart ---> "+this.cart.toString);
-          //       } else {
-          //         alert(response.Message || "Something went wrong!");
-          //       }
-          //     },
-          //     (error: any) => {
-          //       console.error("Error:", error);
-          //       alert("Error getting to cart. Please try again.");
-          //     }
-          //     );
-          // }
+         
 
           this._cartService.get(this.user.id)
             .subscribe((response: APIResponse) => {
               this.cart = response.Data;
               console.log("Response message"+response.Message);
               console.log("user "+this.user.name);
-              console.log("product 1 in cart "+this.cart[1].User.name);
+              console.log("product 1 in cart "+this.cart[1].user.name);
+              console.log("Total : "+this.calculateTotal());
+               this.calculateTotal();
             },
               (error: any) => { alert("No cart Found") }
             )
@@ -64,10 +49,12 @@ export class CartDetailsComponent implements OnInit {
 
         }
       }
+     
   }
 
+
     calculateTotal() {
-      this.totalPrice = this.cart.reduce((sum, item) => sum + item.Product.Price * item.Quantity, 0);
+      this.totalPrice = this.cart.reduce((sum, item) => sum + item.product.Price * item.quantity, 0);
     }
 
     updateQuantity() {
@@ -89,3 +76,25 @@ export class CartDetailsComponent implements OnInit {
       this.totalPrice = 0;
     }
   }
+
+
+
+  
+ //   this._http.get<APIResponse>(`http://localhost:7070/carts/${id}`)
+          //     .subscribe((response: APIResponse) => {
+          //       if (response && response.Success) {
+          //         this.cart = response.Data;
+
+          //         console.log("Products ---->"+this.cart[1].product.Id)
+          //         console.log("Response Date ---> "+response.Message);
+          //         console.log("Cart ---> "+this.cart.toString);
+          //       } else {
+          //         alert(response.Message || "Something went wrong!");
+          //       }
+          //     },
+          //     (error: any) => {
+          //       console.error("Error:", error);
+          //       alert("Error getting to cart. Please try again.");
+          //     }
+          //     );
+          // }
