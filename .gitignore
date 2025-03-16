@@ -1,0 +1,33 @@
+target/
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+#angular project
+ecommerceFrontEnd/node_modules/
+ecommerceFrontEnd/.vcode/
+
+#end-points
+ecommerceApi/.idea/
+ecommerceApi/target/
