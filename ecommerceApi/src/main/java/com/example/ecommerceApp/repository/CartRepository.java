@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CartRepository extends JpaRepository<Cart, CartId> {
     @Modifying
@@ -20,4 +21,6 @@ public interface CartRepository extends JpaRepository<Cart, CartId> {
 
     @Query("SELECT c FROM Cart c WHERE c.user.id = :userId AND c.isDeleted = 0")
     List<Cart> findByUserId(@Param("userId") Integer userId);
+
+    Optional<Cart> findByCartId(CartId cartId);
 }

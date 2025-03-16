@@ -1,11 +1,11 @@
 package com.example.ecommerceApp.service;
 
-
 import com.example.ecommerceApp.dto.*;
 import com.example.ecommerceApp.entity.Cart;
 import com.example.ecommerceApp.entity.CartId;
 import com.example.ecommerceApp.entity.Product;
 import com.example.ecommerceApp.entity.User;
+import com.example.ecommerceApp.mapper.CartIdMapper;
 import com.example.ecommerceApp.mapper.CartMapper;
 import com.example.ecommerceApp.repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +25,11 @@ public class CartService {
     private ProductService productService;
     @Autowired
     private CartMapper cartMapper;
+    @Autowired
+    private CartIdMapper cartIdMapper;
 
     public List<CartDto> getAll(){
         List<Cart> carts = cartRepository.findAll();
-        System.out.println("------------------> user id "+carts.get(0).getUser().getId()); // Access a field to initialize the user
-        System.out.println("------------------> Product id "+carts.get(0).getProduct().getId()); // Access a field to initialize the product
-
         return carts.stream()
                 .map(cartMapper::toDto)
                 .collect(Collectors.toList());
@@ -45,11 +44,22 @@ public class CartService {
 
     public CartDto addCart(CartRequestDto cartRequestDto){
         UserDto userDto = userService.getById(cartRequestDto.getUserId());
-
         ProductDto productDto = productService.getProductByID(cartRequestDto.getProductId());
+        CartIdDto cartIdDto = CartIdDto.builder()
+                .productId(cartRequestDto.getProductId())   
+                .userId(cartRequestDto.getUserId())
+                .build();
 
+        Optional<Cart> existingCart = cartRepository.findByCartId(cartIdMapper.toEntity(cartIdDto));
 
-        CartDto cartDto = CartDto.builder()
+        if(existingCart.isPresent()) {
+            Cart cart = existingCart.get();
+            cart.setQuantity(cart.getQuantity()+cartRequestDto.getQuantity());
+            
+            return cartMapper.toDto(cartRepository.save(cart));
+
+        }else{
+            CartDto cartDto = CartDto.builder()
                 .cartId(CartIdDto.builder()
                         .productId(productDto.getId())
                         .userId(userDto.getId())
@@ -62,6 +72,8 @@ public class CartService {
 
         Cart cart = cartRepository.save(cartMapper.toEntity(cartDto));
         return cartMapper.toDto(cart);
+        }
+        
     }
 
     public void updateQuantity(CartRequestDto cartRequestDto){
