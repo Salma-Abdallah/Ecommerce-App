@@ -2,13 +2,20 @@ package com.example.ecommerceApp.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import lombok.Builder;
 
 import java.io.Serializable;
 
-@Embeddable
+import org.antlr.v4.runtime.misc.NotNull;
 
+@Builder
+@Embeddable
 public class OrderDetailsId  implements Serializable {
+    @NotNull
+    @Column(name = "order_id", nullable = false)
     private int orderId;
+    @NotNull
+    @Column(name = "product_id", nullable = false)
     private int productId;
 
     public OrderDetailsId() {

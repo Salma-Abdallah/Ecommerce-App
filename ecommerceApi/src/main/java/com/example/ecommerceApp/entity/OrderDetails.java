@@ -14,9 +14,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Builder
 public class OrderDetails implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @EmbeddedId
+    private OrderDetailsId orderDetailsId;
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="order_id", nullable=false, insertable=false, updatable=false)
     private Order order;
